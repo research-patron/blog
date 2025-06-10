@@ -58,15 +58,33 @@ async function sendNotification(title, url) {
   await transporter.sendMail({
     from: process.env.SMTP_USER,
     to: process.env.SMTP_USER,
-    subject: '新しい記事が投稿されました',
+    subject: '【セメントブログ】記事の自動投稿完了のお知らせ',
     text: `
-記事「${title}」が正常に投稿されました。
-URL: ${url}
+セメント技術ブログの記事が正常に投稿されました。
+
+■ 記事タイトル
+${title}
+
+■ 投稿URL
+${url}
+
+■ 投稿日時
+${new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}
     `,
     html: `
-<h2>新しい記事が投稿されました</h2>
-<p>記事「${title}」が正常に投稿されました。</p>
-<p><a href="${url}">記事を確認する</a></p>
+<h2>セメント技術ブログ 記事投稿完了</h2>
+<p>下記の記事が正常に投稿されました。</p>
+
+<h3>記事詳細</h3>
+<ul>
+  <li><strong>タイトル：</strong>${title}</li>
+  <li><strong>投稿日時：</strong>${new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}</li>
+</ul>
+
+<p><a href="${url}" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:#ffffff; text-decoration:none; border-radius:5px;">記事を確認する</a></p>
+
+<hr>
+<p style="color:#666; font-size:12px;">※ このメールは自動送信されています。</p>
     `
   });
 }
