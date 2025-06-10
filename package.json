@@ -1,0 +1,16 @@
+{
+  "name": "wp-auto-post",
+  "version": "1.0.0",
+  "description": "Automatic blog post publisher for WordPress",
+  "main": "scripts/publish.js",
+  "scripts": {
+    "publish": "node scripts/publish.js"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.0.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^4.0.0",
+    "node-fetch": "^2.6.7",
+    "nodemailer": "^6.7.2"
+  }
+}
